@@ -1,0 +1,21 @@
+{
+    "name": "dt-device-tester-core",
+    "version-string": "0.1.0",
+    "dependencies": [
+        "boost-signals2",
+        "nlohmann-json",
+        "corrade",
+        {
+            "name": "magnum",
+            "features":[
+                "gl"
+            ]
+        },
+        {
+            "name": "imgui",
+            "features": [
+                "docking-experimental"
+            ]
+        }
+    ]
+}
