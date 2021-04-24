@@ -7,11 +7,11 @@
 namespace dt::df::plugin
 {
 
-class MyPlugin final : public Plugin
+class ConnectionPlugin final : public Plugin
 {
 
   public:
-    explicit MyPlugin(Corrade::PluginManager::AbstractManager &manager, const std::string &plugin)
+    explicit ConnectionPlugin(Corrade::PluginManager::AbstractManager &manager, const std::string &plugin)
         : Plugin{manager, plugin}
     {}
 
@@ -28,4 +28,4 @@ class MyPlugin final : public Plugin
 };
 } // namespace dt::df::plugin
 
-CORRADE_PLUGIN_REGISTER(MyPlugin, dt::df::plugin::MyPlugin, "de.mathisloge.dt.dataflow/1.0")
+CORRADE_PLUGIN_REGISTER(ConnectionPlugin, dt::df::plugin::ConnectionPlugin, "de.mathisloge.dt.dataflow/1.0")
