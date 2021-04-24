@@ -1,18 +1,38 @@
 cmake_minimum_required(VERSION 3.15)
 project(ConnectionPlugin LANGUAGES CXX)
 
+find_package(Boost REQUIRED)
 find_package(imgui CONFIG REQUIRED)
 find_package(Corrade REQUIRED PluginManager)
 find_package(Magnum REQUIRED GL)
 find_package(DtDataFlow CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
 
 set(DTDF_PLUGIN_INSTALL_DBG_DIR ${CMAKE_INSTALL_PREFIX}/bin/dataflow/dbg)
 set(DTDF_PLUGIN_INSTALL_REL_DIR ${CMAKE_INSTALL_PREFIX}/bin/dataflow/rel)
 
 
+set(CON_SRCS
+    src/connections/serial_connection.cpp
+    src/connections/udp_connection.cpp
+    src/connections/tcp_connection.cpp
+)
+
+set(NODE_SRCS
+
+)
 set(SOURCES         
     src/plugin.cpp
+    ${CON_SRCS}
+    ${NODE_SRCS}
 )
+
+set(COMPILE_DEFS BOOST_ASIO_USE_TS_EXECUTOR_AS_DEFAULT SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_DEBUG)
+if(WIN32)
+    # fix to win 10 yet
+    list(APPEND COMPILE_DEFS _WIN32_WINNT=0x0A00)
+endif()
+
 message(STATUS "Plugin DBG Install dir: ${DTDF_PLUGIN_INSTALL_DBG_DIR}")
 message(STATUS "Plugin REL Install dir: ${DTDF_PLUGIN_INSTALL_REL_DIR}")
 corrade_add_plugin(ConnectionPlugin 
@@ -29,6 +49,8 @@ target_include_directories(
 )
 
 target_link_libraries(ConnectionPlugin PRIVATE 
+    Boost::headers
+    spdlog::spdlog
     Corrade::PluginManager
     Magnum::Magnum
     Magnum::GL
@@ -37,3 +59,4 @@ target_link_libraries(ConnectionPlugin PRIVATE
     dt::DtDataflowCore
     dt::DtDataflowPlugin
 )
+target_compile_definitions(ConnectionPlugin PUBLIC ${COMPILE_DEFS})

@@ -3,8 +3,11 @@
     "version-string": "0.1.0",
     "dependencies": [
         "boost-signals2",
+        "boost-asio",
+        "boost-circular-buffer",
         "nlohmann-json",
         "corrade",
+        "spdlog",
         {
             "name": "magnum",
             "features":[
