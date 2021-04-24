@@ -19,7 +19,10 @@ set(CON_SRCS
 )
 
 set(NODE_SRCS
-
+    src/nodes/connection_node.cpp
+    src/nodes/tcp_client_node.cpp
+    src/nodes/udp_node.cpp
+    src/nodes/serial_node.cpp
 )
 set(SOURCES         
     src/plugin.cpp
