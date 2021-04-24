@@ -17,8 +17,11 @@ set(CON_SRCS
     src/connections/udp_connection.cpp
     src/connections/tcp_connection.cpp
 )
-
+set(SLOTS_SRCS
+    src/slots/io_context_slot.cpp
+)
 set(NODE_SRCS
+    src/nodes/io_context_node.cpp
     src/nodes/connection_node.cpp
     src/nodes/tcp_client_node.cpp
     src/nodes/udp_node.cpp
@@ -28,6 +31,7 @@ set(SOURCES
     src/plugin.cpp
     ${CON_SRCS}
     ${NODE_SRCS}
+    ${SLOTS_SRCS}
 )
 
 set(COMPILE_DEFS BOOST_ASIO_USE_TS_EXECUTOR_AS_DEFAULT SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_DEBUG)
