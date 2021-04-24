@@ -11,6 +11,10 @@ find_package(spdlog CONFIG REQUIRED)
 set(DTDF_PLUGIN_INSTALL_DBG_DIR ${CMAKE_INSTALL_PREFIX}/bin/dataflow/dbg)
 set(DTDF_PLUGIN_INSTALL_REL_DIR ${CMAKE_INSTALL_PREFIX}/bin/dataflow/rel)
 
+add_library(imgui-club INTERFACE)
+target_include_directories(imgui-club INTERFACE imgui_club/imgui_memory_editor)
+add_library(imgui::club ALIAS imgui-club)
+
 
 set(CON_SRCS
     src/connections/serial_connection.cpp
@@ -26,6 +30,7 @@ set(NODE_SRCS
     src/nodes/tcp_client_node.cpp
     src/nodes/udp_node.cpp
     src/nodes/serial_node.cpp
+    src/nodes/data_viewer_node.cpp
 )
 set(SOURCES         
     src/plugin.cpp
@@ -62,6 +67,7 @@ target_link_libraries(ConnectionPlugin PRIVATE
     Magnum::Magnum
     Magnum::GL
     imgui::imgui
+    imgui::club
     dt::imnodes
     dt::DtDataflowCore
     dt::DtDataflowPlugin

@@ -18,4 +18,10 @@ std::shared_ptr<boost::asio::io_context> IoContextSlot::value() const
 {
     return io_ctx_;
 }
+
+void IoContextSlot::setContext(const std::shared_ptr<boost::asio::io_context> &ctx)
+{
+    io_ctx_ = ctx;
+    valueChanged();
+}
 } // namespace slots
