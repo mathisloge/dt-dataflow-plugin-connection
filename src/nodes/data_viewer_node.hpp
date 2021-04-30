@@ -1,20 +1,19 @@
 #pragma once
 #include <span>
 #include <vector>
-#include <dt/df/core/window_node.hpp>
+#include <dt/df/core/window_base_node.hpp>
 #include <imgui.h>
 #include <imgui_memory_editor.h>
 namespace nodes
 {
-class DataViewerNode : public dt::df::WindowNode
+class DataViewerNode : public dt::df::core::WindowBaseNode
 {
   public:
     static constexpr const char *kKey = "ConnectionDataViewerNode";
     static constexpr const char *kName = "DataViewer";
 
   public:
-    DataViewerNode(dt::df::IGraphManager &graph_manager);
-    DataViewerNode(dt::df::IGraphManager &graph_manager, const nlohmann::json &json);
+    explicit DataViewerNode(dt::df::core::IGraphManager &graph_manager);
     void addData(std::span<uint8_t> data);
 
   private:

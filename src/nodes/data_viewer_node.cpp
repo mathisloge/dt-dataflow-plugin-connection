@@ -1,17 +1,10 @@
 #include "data_viewer_node.hpp"
 #include <dt/df/core/graph_manager.hpp>
-#include <dt/df/core/span_slot.hpp>
 namespace nodes
 {
 
-static dt::df::Slots createInputs(dt::df::IGraphManager &graph_manager);
-static dt::df::Slots createOutputs(dt::df::IGraphManager &graph_manager);
-
-DataViewerNode::DataViewerNode(dt::df::IGraphManager &graph_manager)
-    : WindowNode(graph_manager, kKey, kName, kName, createInputs(graph_manager), createOutputs(graph_manager))
-{}
-DataViewerNode::DataViewerNode(dt::df::IGraphManager &graph_manager, const nlohmann::json &json)
-    : WindowNode(graph_manager, json)
+DataViewerNode::DataViewerNode(dt::df::core::IGraphManager &graph_manager)
+    : WindowBaseNode(graph_manager, kKey, kName, kName)
 {}
 
 void DataViewerNode::addData(std::span<uint8_t> data)
@@ -33,21 +26,4 @@ void DataViewerNode::drawWindow()
     // ImGui::PopFont();
 }
 
-dt::df::Slots createInputs(dt::df::IGraphManager &graph_manager)
-{
-    dt::df::Slots inputs;
-    try
-    {
-        const auto &span_fac = graph_manager.getSlotFactory("SpanSlot");
-        inputs.emplace_back(
-            span_fac(graph_manager, dt::df::SlotType::input, "data", 1, dt::df::SlotFieldVisibility::never));
-    }
-    catch (...)
-    {}
-    return inputs;
-}
-dt::df::Slots createOutputs(dt::df::IGraphManager &graph_manager)
-{
-    return {};
-}
 } // namespace nodes
