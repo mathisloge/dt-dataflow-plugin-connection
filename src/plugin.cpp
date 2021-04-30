@@ -8,7 +8,6 @@
 #include "nodes/serial_node.hpp"
 namespace dt::df::plugin
 {
-
 class ConnectionPlugin final : public Plugin
 {
 
@@ -29,8 +28,7 @@ class ConnectionPlugin final : public Plugin
         registerNode<nodes::SerialNode>(graph, "connections/");
     }
     void registerSlotFactories(core::IGraphManager &graph)
-    {
-    }
+    {}
 };
 } // namespace dt::df::plugin
 
