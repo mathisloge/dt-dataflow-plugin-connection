@@ -4,8 +4,10 @@
 #include <dt/df/plugin/helper.hpp>
 #include <dt/df/plugin/plugin.hpp>
 #include <imnodes.h>
+#include "connections/serial_connection.hpp"
 #include "nodes/data_viewer_node.hpp"
 #include "nodes/serial_node.hpp"
+#include "nodes/serial_options_node.hpp"
 namespace dt::df::plugin
 {
 class ConnectionPlugin final : public Plugin
@@ -26,9 +28,12 @@ class ConnectionPlugin final : public Plugin
     {
         registerNode<nodes::DataViewerNode>(graph, "connections/");
         registerNode<nodes::SerialNode>(graph, "connections/");
+        registerNode<nodes::SerialOptionsNode>(graph, "connections/opts/");
     }
     void registerSlotFactories(core::IGraphManager &graph)
-    {}
+    {
+        registerBaseSlot<const connection::SerialOptions &>(graph, "ConSerialOptions");
+    }
 };
 } // namespace dt::df::plugin
 

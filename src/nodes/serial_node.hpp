@@ -21,6 +21,7 @@ class SerialNode final : public ConnectionNode
     void handleIoContextChange() override;
 
   private:
+    connection::SerialOptions options_;
     std::shared_ptr<connection::Serial> serial_con_;
 };
 } // namespace nodes

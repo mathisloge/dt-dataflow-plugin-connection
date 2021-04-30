@@ -27,6 +27,7 @@ set(NODE_SRCS
     src/nodes/udp_node.cpp
     src/nodes/serial_node.cpp
     src/nodes/data_viewer_node.cpp
+    src/nodes/serial_options_node.cpp
 )
 set(SOURCES         
     src/plugin.cpp
