@@ -29,10 +29,10 @@ class ConnectionPlugin final : public Plugin
     }
     void registerNodeFactories(core::IGraphManager &graph)
     {
-        registerNode<nodes::DataViewerNode>(graph, "connections/con/");
+        registerNode<nodes::DataViewerNode>(graph, "connections/");
         registerNode<nodes::SerialNode>(graph, "connections/con/");
         registerNode<nodes::SerialOptionsNode>(graph, "connections/opts/");
-        registerNode<nodes::UdpNode>(graph, "connections/");
+        registerNode<nodes::UdpNode>(graph, "connections/con/");
         registerNode<nodes::UdpOptionsNode>(graph, "connections/opts/");
     }
     void registerSlotFactories(core::IGraphManager &graph)
