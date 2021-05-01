@@ -29,8 +29,8 @@ class ConnectionPlugin final : public Plugin
     }
     void registerNodeFactories(core::IGraphManager &graph)
     {
-        registerNode<nodes::DataViewerNode>(graph, "connections/");
-        registerNode<nodes::SerialNode>(graph, "connections/");
+        registerNode<nodes::DataViewerNode>(graph, "connections/con/");
+        registerNode<nodes::SerialNode>(graph, "connections/con/");
         registerNode<nodes::SerialOptionsNode>(graph, "connections/opts/");
         registerNode<nodes::UdpNode>(graph, "connections/");
         registerNode<nodes::UdpOptionsNode>(graph, "connections/opts/");
