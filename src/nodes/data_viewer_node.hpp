@@ -14,6 +14,7 @@ class DataViewerNode : public dt::df::core::WindowBaseNode
 
   public:
     explicit DataViewerNode(dt::df::core::IGraphManager &graph_manager);
+    void init(dt::df::core::IGraphManager &graph_manager) override;
     void addData(std::span<uint8_t> data);
 
   private:

@@ -22,7 +22,7 @@ struct UdpOptions : public Options
     Protocol listen_protocol;
     unsigned short listen_port;
 };
-class Udp final : public std::enable_shared_from_this<Udp>
+class Udp final
 {
     using udp = boost::asio::ip::udp;
 
@@ -43,6 +43,7 @@ class Udp final : public std::enable_shared_from_this<Udp>
     const UdpOptions &udpOptions() const;
     UdpOptions &udpOptions();
     std::string_view type() const;
+    ~Udp();
 
   private:
     void startRead();

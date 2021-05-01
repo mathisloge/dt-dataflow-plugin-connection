@@ -4,7 +4,7 @@
 #include "connection_node.hpp"
 namespace nodes
 {
-class SerialNode final : public ConnectionNode
+class SerialNode final : public ConnectionNode<connection::SerialOptions>
 {
   public:
     static constexpr const char *kKey = "SerialConnectionNode";
@@ -19,9 +19,10 @@ class SerialNode final : public ConnectionNode
 
   private:
     void handleIoContextChange() override;
+    void handleIoOptionChange(const connection::SerialOptions &newopts) override;
+    void handleDataInput(std::span<uint8_t> write_data) override;
 
   private:
-    connection::SerialOptions options_;
     std::shared_ptr<connection::Serial> serial_con_;
 };
 } // namespace nodes

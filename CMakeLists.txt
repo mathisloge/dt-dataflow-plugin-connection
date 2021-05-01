@@ -22,12 +22,12 @@ set(CON_SRCS
     src/connections/tcp_connection.cpp
 )
 set(NODE_SRCS
-    src/nodes/connection_node.cpp
     src/nodes/tcp_client_node.cpp
     src/nodes/udp_node.cpp
     src/nodes/serial_node.cpp
     src/nodes/data_viewer_node.cpp
     src/nodes/serial_options_node.cpp
+    src/nodes/udp_options_node.cpp
 )
 set(SOURCES         
     src/plugin.cpp

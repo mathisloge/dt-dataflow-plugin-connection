@@ -1,4 +1,5 @@
 #include "udp_connection.hpp"
+#include <iostream>
 #include <span>
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
@@ -53,11 +54,13 @@ void Udp::write(std::span<uint8_t> data)
     socket_.async_send_to(
         boost::asio::buffer(*buffer_tx),
         write_endpoint_,
-        std::bind(&Udp::handleWrite, shared_from_this(), buffer_tx, std::placeholders::_1, std::placeholders::_2));
+        std::bind(&Udp::handleWrite, this, buffer_tx, std::placeholders::_1, std::placeholders::_2));
 }
 
 void Udp::applyOptions()
 {
+    SPDLOG_INFO("applyOptions");
+    std::cout << "applyOptions" << std::endl;
     if (isConnected())
     {
         disconnect();
@@ -91,7 +94,7 @@ void Udp::startRead()
     socket_.async_receive_from(
         boost::asio::buffer(buffer_rx_),
         remote_endpoint_,
-        std::bind(&Udp::handleRead, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
+        std::bind(&Udp::handleRead, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 void Udp::handleRead(const boost::system::error_code &error, std::size_t n)
@@ -138,5 +141,10 @@ UdpOptions &Udp::udpOptions()
 std::string_view Udp::type() const
 {
     return kType;
+}
+
+Udp::~Udp()
+{
+    disconnect();
 }
 } // namespace connection

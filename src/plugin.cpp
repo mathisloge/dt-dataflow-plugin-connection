@@ -8,6 +8,9 @@
 #include "nodes/data_viewer_node.hpp"
 #include "nodes/serial_node.hpp"
 #include "nodes/serial_options_node.hpp"
+#include "nodes/udp_node.hpp"
+#include "nodes/udp_options_node.hpp"
+
 namespace dt::df::plugin
 {
 class ConnectionPlugin final : public Plugin
@@ -29,10 +32,13 @@ class ConnectionPlugin final : public Plugin
         registerNode<nodes::DataViewerNode>(graph, "connections/");
         registerNode<nodes::SerialNode>(graph, "connections/");
         registerNode<nodes::SerialOptionsNode>(graph, "connections/opts/");
+        registerNode<nodes::UdpNode>(graph, "connections/");
+        registerNode<nodes::UdpOptionsNode>(graph, "connections/opts/");
     }
     void registerSlotFactories(core::IGraphManager &graph)
     {
         registerBaseSlot<const connection::SerialOptions &>(graph, "ConSerialOptions");
+        registerBaseSlot<const connection::UdpOptions &>(graph, "ConUdpOptions");
     }
 };
 } // namespace dt::df::plugin
