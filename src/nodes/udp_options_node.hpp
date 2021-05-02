@@ -3,14 +3,14 @@
 #include "../connections/udp_connection.hpp"
 namespace nodes
 {
-class UdpOptionsNode final : public dt::df::SimpleOutputNode<connection::UdpOptions>
+class UdpOptionsNode final : public dt::df::SimpleOutputNode<UdpOptionsNode, connection::UdpOptions>
 {
   public:
     static constexpr const char *kKey = "UdpOptionsNode";
     static constexpr const char *kName = "UdpOptions";
-
-    explicit UdpOptionsNode(dt::df::core::IGraphManager &graph_manager);
-    void init(dt::df::core::IGraphManager &graph_manager) override;
+    static constexpr const char *kSlotOutKey = "ConUdpOptions";
+    static constexpr const char *kSlotOutName = "options";
+    using SimpleOutputNode::SimpleOutputNode;
 
   private:
     void renderCustomContent() override;

@@ -3,13 +3,6 @@
 #include <imgui_stdlib.h>
 namespace nodes
 {
-UdpOptionsNode::UdpOptionsNode(dt::df::core::IGraphManager &graph_manager)
-    : SimpleOutputNode<connection::UdpOptions>(graph_manager, std::string{kKey}, std::string{kName})
-{}
-void UdpOptionsNode::init(dt::df::core::IGraphManager &graph_manager)
-{
-    output_slot_ = registerOutput(graph_manager, "ConUdpOptions", "options", 0);
-}
 
 void UdpOptionsNode::renderCustomContent()
 {

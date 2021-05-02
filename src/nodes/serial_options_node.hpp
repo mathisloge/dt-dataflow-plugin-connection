@@ -3,13 +3,13 @@
 #include "../connections/serial_connection.hpp"
 namespace nodes
 {
-class SerialOptionsNode : public dt::df::SimpleOutputNode<connection::SerialOptions>
+class SerialOptionsNode : public dt::df::SimpleOutputNode<SerialOptionsNode, connection::SerialOptions>
 {
   public:
     static constexpr const char *kKey = "SerialOptionsNode";
     static constexpr const char *kName = "SerialOptions";
-
-    explicit SerialOptionsNode(dt::df::core::IGraphManager &graph_manager);
-    void init(dt::df::core::IGraphManager &graph_manager) override;
+    static constexpr const char *kSlotOutKey = "ConSerialOptions";
+    static constexpr const char *kSlotOutName = "options";
+    using SimpleOutputNode::SimpleOutputNode;
 };
 } // namespace nodes
